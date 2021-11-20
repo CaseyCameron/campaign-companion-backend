@@ -23,13 +23,10 @@ const campaign2 = {
   gameMaster: user.authId,
 };
 
-describe('demo routes', () => {
+describe.skip('testing campaign routes', () => {
   beforeAll(async () => {
     await db.query('SET FOREIGN_KEY_CHECKS = 0')
       .then(() => db.sync({ force: true })
-        .then(result => {
-          console.log('result', result);
-        })
         .then(() => {
           return db.query('SET FOREIGN_KEY_CHECKS = 1');
         })
