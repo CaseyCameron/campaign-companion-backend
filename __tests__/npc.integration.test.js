@@ -37,6 +37,10 @@ describe('testing npcs routes', () => {
     expect(res.body).toEqual({ id: 1, ...npc });
   });
 
+  it('Updates an npc via PUT adding a UserID', async () => {
+
+  });
+
   it('GETs an npc', async () => {
     const res = await request(app)
       .get('/api/v1/npcs/1');
@@ -45,5 +49,18 @@ describe('testing npcs routes', () => {
       id: 1, 
       UserId: null,
       ...npc });
+  });
+
+
+  it('Updates an npc column via PUT', async () => {
+
+  });
+
+  it.skip('Gets all npcs', async () => {
+
+  });
+
+  it.skip('DELETEs an npc', async () => {
+
   });
 });
