@@ -1,21 +1,22 @@
 import db from '../lib/utils/db.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import User from '../lib/models/User.js';
 
-const user = {
-  id: 1,
-  authId: 'googleauth|1234',
-  email: 'testMaster@gamemaster.com'
-};
-
-const npc = {
+const npc1 = {
   name: 'npc',
   race: 'elf',
   alignment: 'N',
   description: 'Short description',
   image: 'https://image.png',
-  // authId: user.authId,
-  campaign: ''
+};
+
+const npc2 = {
+  name: 'npc2',
+  race: 'elf',
+  alignment: 'N',
+  description: 'Second npc',
+  image: 'https://image.png',
 };
 
 describe('testing npcs routes', () => {
@@ -31,36 +32,63 @@ describe('testing npcs routes', () => {
   });
 
   it('POSTs an npc', async () => {
+    // create a user to associate with the NPC
+    const user = await User.create({
+      authId: 'googleauth|1234',
+      email: 'testMaster@gamemaster.com'
+    });
+
+    // send the user.id for the foreignKey column, include npc id, and spread in npc1
     const res = await request(app)
-      .post('/api/v1/npcs')
-      .send(npc);
-    expect(res.body).toEqual({ id: 1, ...npc });
-  });
+      .post('/api/v1/npcs/')
+      .send({ UserId: user.id, ...npc1 });
 
-  it('Updates an npc via PUT adding a UserID', async () => {
-
+    expect(res.body).toEqual({ id: 1, UserId: 1, ...npc1 });
   });
 
   it('GETs an npc', async () => {
     const res = await request(app)
       .get('/api/v1/npcs/1');
 
-    expect(res.body).toEqual({ 
-      id: 1, 
-      UserId: null,
-      ...npc });
+    expect(res.body).toEqual({ id: 1, UserId: 1, ...npc1 });
   });
 
+  it('Gets all npcs', async () => {
+    // make a new NPC
+    await request(app)
+      .post('/api/v1/npcs/')
+      .send({ UserId: 1, ...npc2 });
+
+    // get the two NPCs
+    const res = await request(app)
+      .get('/api/v1/npcs');
+
+    expect(res.body).toEqual([{ id: 1, UserId: 1, ...npc1 }, { id: 2, UserId: 1, ...npc2 }]);
+  });
 
   it('Updates an npc column via PUT', async () => {
+    await request(app)
+      .put('/api/v1/npcs/1')
+      .send({ description: 'updated description' });
 
+    const res = await request(app)
+      .get('/api/v1/npcs/1');
+
+    expect(res.body).toEqual({ 
+      id: 1,
+      UserId: 1,
+      name: 'npc',
+      race: 'elf',
+      alignment: 'N',
+      description: 'updated description',
+      image: 'https://image.png',
+    });
   });
 
-  it.skip('Gets all npcs', async () => {
+  it('DELETEs an npc', async () => {
+    const res = await request(app)
+      .delete('/api/v1/npcs/2');
 
-  });
-
-  it.skip('DELETEs an npc', async () => {
-
+    expect(res.body).toEqual({ delete: 'complete' });
   });
 });
