@@ -24,7 +24,7 @@ describe('testing npcs routes', () => {
         }));
   });
 
-  it('POSTS and gets all permissions', async () => {
+  it('POSTS and GETs all permissions', async () => {
     await Permission.bulkCreate(
       [createNpc, editNpc, removeNpc, deleteNpc, createCampaign, editCampaign, viewCampaign, deleteCampaign]
     );
