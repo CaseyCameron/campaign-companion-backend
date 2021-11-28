@@ -19,7 +19,7 @@ const npc2 = {
   image: 'https://image.png',
 };
 
-describe.skip('testing npcs routes', () => {
+describe('testing npcs routes', () => {
   beforeAll(async () => {
     await db.query('SET FOREIGN_KEY_CHECKS = 0')
       .then(() => db.sync({ force: true })
@@ -31,7 +31,7 @@ describe.skip('testing npcs routes', () => {
         }));
   });
 
-  it('POSTs an npc', async () => {
+  it.only('POSTs an npc', async () => {
     // create a user to associate with the NPC
     const user = await User.create({
       authId: 'googleauth|1234',
