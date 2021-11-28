@@ -1,0 +1,30 @@
+version: "3.4"
+services:
+  api:
+    image: campaign-companion-api
+    working_dir: /data
+    depends_on:
+      - db
+
+  migrations:
+    image: campaign-companion-api
+    working_dir: /data
+    depends_on:
+      - db
+    command:
+      - npm run setup-db
+
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSOWRD: password
+    volumes:
+      - dbdata1:/var/lib/mysql
+
+
+volumes:
+  dbdata1:
+    name: ${USER}_data
+    driver: local

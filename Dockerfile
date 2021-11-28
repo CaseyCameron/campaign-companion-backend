@@ -1,4 +1,4 @@
-FROM node
+FROM node:16.13
 
 RUN mkdir /data
 WORKDIR /data
