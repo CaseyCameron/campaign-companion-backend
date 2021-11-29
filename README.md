@@ -3,8 +3,9 @@
 ### QuickStart
 
 1. Install Docker
-1. Run `make` to get containers and set up dependencies
-1. Run `docker-compose up` to run locally
+1. Run `make` to get containers and set up dependencies.
+1. Run `docker-compose up` to run locally.
+1. Run `make seed` to insert seed data.
 1. Point your browser to http://localhost:8080/
 
 
@@ -30,10 +31,10 @@ Builds the docker container for distribution and use in the docker-compose netwo
 
 Installs dependencies.
 
-#### `make migrate`
+#### `make seed`
 
-Run the migrations to insert schema and seed data into the database.
+Insert the seed data. Only do this once as it's not guaranteed to be idempotent.
 
 #### `make shell`
 
-Creates a bash shell inside the docker container for debugging or more advanced script running.
+Creates a bash shell inside a docker container for debugging or more advanced script running.

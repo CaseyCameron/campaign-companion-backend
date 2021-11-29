@@ -1,27 +1,31 @@
 version: "3.4"
 services:
-  api:
-    image: campaign-companion-api
-    working_dir: /data
-    depends_on:
-      - db
-
-  migrations:
-    image: campaign-companion-api
-    working_dir: /data
-    depends_on:
-      - db
-    command:
-      - npm run setup-db
-
   db:
     image: mysql
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSOWRD: password
+      MYSQL_ROOT_PASSWORD: "password"
     volumes:
       - dbdata1:/var/lib/mysql
+
+  api:
+    image: campaign-companion-api
+    working_dir: /data
+    depends_on:
+      - db
+    ports:
+      - 7890:7890
+    environment:
+      DB_HOST: db
+      DB_NAME: 'campaign_companion'
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_URL: "" # TODO might need later?
+    command:
+      - /data/start.sh
+    volumes:
+      - ./:/data
 
 
 volumes:

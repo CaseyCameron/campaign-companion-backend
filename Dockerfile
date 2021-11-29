@@ -1,4 +1,7 @@
-FROM node:16.13
+FROM node:16.13-bullseye
+
+USER root
+RUN apt-get update && apt-get install -y default-mysql-client
 
 RUN mkdir /data
 WORKDIR /data
