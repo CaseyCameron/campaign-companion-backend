@@ -1,7 +1,7 @@
 // import app from '../app.js';
 // import db from '../utils/db.js';
 import { seedData } from './seed-data.js';
-import { User, Npc, Campaign, Permission } from '../models/index.js';
+import { User, Npc, Campaign, Permission } from '../lib/models/index.js';
 
 const loadSyncData = async () => {
   await User.bulkCreate(seedData.users);

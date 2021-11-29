@@ -34,17 +34,9 @@ docker_push:
 	docker push $(PROJECT_NAME):devel
 	docker push $(PROJECT_NAME):$(VERSION)
 
-.PHONY: migrate
-migrate:
-	docker-compose up migrations
-	
-.PHONY: rollback
-rollback:
-	${DOCKER_RUN} npm run rollback
-
-.PHONY: dev
-dev: 
-	${DOCKER_RUN} npm run dev
+.PHONY: seed
+seed:
+	docker-compose exec api node data/load-seed-data.js
 
 .PHONY: build
 build: 
