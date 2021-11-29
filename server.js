@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 7890;
 
 db.sync({ force: true }).then(result => {
   console.log(result);
-  app.listen(3000);
 }).catch(err => {
   console.log(err);
 });
