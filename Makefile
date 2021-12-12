@@ -9,7 +9,7 @@ DOCKER_RUN = docker run ${DOCKER_FLAGS} -t --rm \
 	--user=${HOST_UID}:${HOST_GID} \
 	--workdir=/data \
 	-v ${CURRENT_DIR}:/data \
-	node:16.13
+	node:16.13-bullseye
 
 .PHONY: all
 all: docker_build build
