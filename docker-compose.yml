@@ -27,6 +27,20 @@ services:
     volumes:
       - ./:/data
 
+  web:
+    image: campaign-companion-frontend
+    working_dir: /data
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
+    environment:
+      PORT: 3000
+    command:
+      - npm 
+      - start
+    volumes:
+      - ../campaign-companion-frontend/:/data
 
 volumes:
   dbdata1:
