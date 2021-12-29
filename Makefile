@@ -34,8 +34,12 @@ docker_push:
 	docker push $(PROJECT_NAME):devel
 	docker push $(PROJECT_NAME):$(VERSION)
 
+.PHONY: preseed
+preseed:
+	docker-compose exec db mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS campaign_companion;"
+
 .PHONY: seed
-seed:
+seed: preseed
 	docker-compose exec api node data/load-seed-data.js
 
 .PHONY: build
