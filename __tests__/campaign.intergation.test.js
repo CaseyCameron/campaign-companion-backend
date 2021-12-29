@@ -5,7 +5,7 @@ import { User } from '../lib/models/index.js';
 
 const user = {
   id: '1',
-  authId: 'googleauth|1234',
+  username: 'user1234',
   email: 'testMaster@gamemaster.com'
 };
 
@@ -13,14 +13,14 @@ const campaign1 = {
   name: 'First Test Campaign',
   description: 'First Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user.authId,
+  gameMaster: user.username,
 };
 
 const campaign2 = {
   name: 'Second Test Campaign',
   description: 'Second Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user.authId,
+  gameMaster: user.username,
 };
 
 describe.skip('testing campaign routes', () => {
@@ -34,7 +34,7 @@ describe.skip('testing campaign routes', () => {
           console.log('Database synchronised.');
         }));
         
-    await User.create({ authId: 'googleauth|1234', email: 'testMaster@gamemaster.com' });
+    await User.create({ username: 'user1234', email: 'testMaster@gamemaster.com' });
   });
 
   it('POSTs a campaign', async () => {
@@ -76,7 +76,7 @@ describe.skip('testing campaign routes', () => {
       name: 'Second Test Campaign',
       description: 'updated',
       image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-      gameMaster: 'googleauth|1234',
+      gameMaster: 'user1234',
     });
   });
 

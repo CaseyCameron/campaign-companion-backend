@@ -1,10 +1,10 @@
 const user1 = {
-  authId: 'googleauth|1234',
+  username: 'user1234',
   email: 'testMaster@gamemaster.com'
 };
 
 const user2 = {
-  authId: 'googleauth|3456',
+  username: 'user3456',
   email: 'gm@gm.net'
 };
 
@@ -12,14 +12,14 @@ const campaign1 = {
   name: 'First Test Campaign',
   description: 'First Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user1.authId,
+  gameMaster: user1.username,
 };
 
 const campaign2 = {
   name: 'Second Test Campaign',
   description: 'Second Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user2.authId,
+  gameMaster: user2.username,
 };
 
 const npc1 = {

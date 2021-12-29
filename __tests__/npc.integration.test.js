@@ -34,7 +34,7 @@ describe('testing npcs routes', () => {
   it.only('POSTs an npc', async () => {
     // create a user to associate with the NPC
     const user = await User.create({
-      authId: 'googleauth|1234',
+      username: 'user1234',
       email: 'testMaster@gamemaster.com'
     });
 

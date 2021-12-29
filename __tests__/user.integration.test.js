@@ -4,7 +4,7 @@ import app from '../lib/app.js';
 
 const user = {
   id: 1,
-  authId: 'googleauth|1234',
+  username: 'user1234',
   email: 'testMaster@gamemaster.com'
 };
 
@@ -23,7 +23,7 @@ describe.skip('testing user routes', () => {
   it('POSTS a user', async () => {
     const res = await request(app)
       .post('/api/v1/users')
-      .send({ authId: 'googleauth|1234', email: 'testMaster@gamemaster.com' });
+      .send({ username: 'user1234', email: 'testMaster@gamemaster.com' });
 
     expect(res.body).toEqual({
       createdAt: expect.any(String),
@@ -49,7 +49,7 @@ describe.skip('testing user routes', () => {
     
     expect(res.body).toEqual({
       id: 1,
-      authId: 'googleauth|1234',
+      username: 'user1234',
       email: 'gamemaster@test.com'
     });
   });
