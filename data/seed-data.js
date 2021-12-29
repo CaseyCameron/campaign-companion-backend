@@ -12,14 +12,14 @@ const campaign1 = {
   name: 'First Test Campaign',
   description: 'First Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user1.username,
+  // gameMaster: user1.username,
 };
 
 const campaign2 = {
   name: 'Second Test Campaign',
   description: 'Second Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user2.username,
+  // gameMaster: user2.username,
 };
 
 const npc1 = {

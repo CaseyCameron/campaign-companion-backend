@@ -3,24 +3,24 @@ import request from 'supertest';
 import app from '../lib/app.js';
 import { User } from '../lib/models/index.js';
 
-const user = {
-  id: '1',
-  username: 'user1234',
-  email: 'testMaster@gamemaster.com'
-};
+// const user = {
+//   id: '1',
+//   username: 'user1234',
+//   email: 'testMaster@gamemaster.com'
+// };
 
 const campaign1 = {
   name: 'First Test Campaign',
   description: 'First Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user.username,
+  // gameMaster: user.username,
 };
 
 const campaign2 = {
   name: 'Second Test Campaign',
   description: 'Second Test description',
   image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-  gameMaster: user.username,
+  // gameMaster: user.username,
 };
 
 describe.skip('testing campaign routes', () => {
@@ -76,7 +76,7 @@ describe.skip('testing campaign routes', () => {
       name: 'Second Test Campaign',
       description: 'updated',
       image: 'https://cdn.discordapp.com/attachments/716731135501271101/871626952958672956/2Q.png',
-      gameMaster: 'user1234',
+      // gameMaster: 'user1234',
     });
   });
 
